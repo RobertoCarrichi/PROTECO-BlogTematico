@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <main class="container">
     <!-- Title -->
@@ -28,8 +27,8 @@
                         </div>
                         <hr>
                         <p class="card-text"></p>
-                        <a class="card-text w-50" href="{{asset("tareas/$tarea->file")}}"></a>
-                        <a href="entregas.html" class="btn btn-success card-entregar mt-5">Entregar</a>
+                        <a class="card-text w-50" href=""></a>
+                        <a href="" class="btn btn-success card-entregar mt-5">Entregar</a>
                     </div>
                 </div>
             </div>
