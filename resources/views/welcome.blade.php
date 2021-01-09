@@ -24,7 +24,7 @@
       <a href="">Categoría 1</a>
       <a href="">Categoría 2</a>
       <!-- ESTAS DOS OPCIONES DEPENDERÁN SI EL USUARIO ESTÁ AUTENTICADO O SI NO. -->
-      <a href="">Regístrate</a>
+      <a href="{{route('register')}}">Regístrate</a>
       <a href="">Inicia sesión</a>
     </nav>
   </header>
