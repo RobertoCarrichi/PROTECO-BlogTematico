@@ -94,10 +94,10 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $article = Articulo::findOrFail($id);
+        $backup = $article;
         $article->author_id = $request->author_id;
         $article->title = $request->title;
         $article->description = $request->description;
-        $article->img = $request->img;
 
         if($request->hasFile('img')){
             $img = $request->img;
@@ -108,6 +108,8 @@ class ArticleController extends Controller
             $img->move($destination, $name);
             $article->img = $name;
         }
+        // En dado caso que el usuario no ingrese una nueva imagen,
+        // solo el parámetro no se actualiza.
 
         $article->update();
 
@@ -125,6 +127,6 @@ class ArticleController extends Controller
         $articulo = Articulo::findOrFail($id);
         $articulo->delete();
 
-        return redirect('AdminCursos');
+        return redirect('AdminArticulos');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\User;
 use App\Articulo;
 
 /*
@@ -18,14 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('main');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/profile', function(){
-	return view('profile');
-})->name('profile');
-
 
 Route::middleware(['AdminAccess'])->group(function() {
 	Route::resource('AdminArticulos','ArticleController');
@@ -34,3 +29,16 @@ Route::middleware(['AdminAccess'])->group(function() {
 Route::resource('show','showController');
 
 Route::resource('comment','CommentController');
+
+// Route::get('/profile', 'showController@profile')->name('profile');
+
+Route::get('/profile/{id}', function($id){
+	// return redirect('profile');
+	$user = User::findOrFail($id);
+	return $user->name;
+})->name('test');
+
+
+
+
+Auth::routes();

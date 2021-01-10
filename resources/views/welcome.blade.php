@@ -31,7 +31,7 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a href="{{route('profile')}}">{{Auth::user()->name}}</a>    
+                        <a href="{{route('show.index',Auth::user()->id)}}">{{Auth::user()->name}}</a>    
                         @if(Auth::user()->admin)
                         <a href="{{route('AdminArticulos.index')}}">Administrador</a>
                         @endif

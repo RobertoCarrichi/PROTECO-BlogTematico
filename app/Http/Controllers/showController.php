@@ -23,9 +23,16 @@ class showController extends Controller
         return view('publicacion',['articulo' => $articulo,'autor' => $autor,'comentarios' => $comentarios]);
     }
 
-    public function profile($id)
+    // public function profile(Request $request)
+    // {
+    //     $user = User::findOrFail($request->user_id);
+    //     return view('profile',['user' => $user]);
+    // }
+
+    public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('profile',['user' => $user]);
+        return redirect('/profile/'.$id);
+        // return view('profile',['user' => $user]);
     }
 }

@@ -17,16 +17,16 @@ class CreateComentariosTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('user_id');
-            $table->text('user_name');
+            $table->string('user_name');
             $table->unsignedBigInteger('article_id');
             // $table->unsignedBigInteger('author_id');
             $table->text('comment');
 
+            $table->timestamps();
+
             //Definimos llave foranea y la referenciamos al id de la tabla usuarios.
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('article_id')->references('id')->on('articulos');
-
-            $table->timestamps();
         });
     }
 

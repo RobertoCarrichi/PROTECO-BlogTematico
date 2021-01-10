@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+@if(Auth::user()->admin)
+<div id="c-accionesAdmin">
+	<!-- Ya que es un administrador, tiene derecho a eliminar algún artículo del blog -->
+	<a href="{{route('AdminArticulos.edit', $articulo->id)}}"><button>Editar</button></a>
+	<form method="POST" action="{{route('AdminArticulos.destroy',$articulo->id)}}">
+		@csrf
+		@method('DELETE')
+			<button class="rojo" type="submit">Eliminar</button>
+	</form>
+</div>
+@endif
 <!-- ESTA VISTA MOSTRARÁ DE FORMA DETALLADA UNA PUBLICACIÓN DEL BLOG TEMÁTICO -->
 <h1>Título del post</h1>
 <!-- Contenedor de la imagen principal -->
@@ -8,6 +19,7 @@
 </div>
 <!-- Contenedor del contenido del texto -->
 <div id="c-publicacion-texto">
+	<h4>Descripción:</h4>
 	<div id="c-texto">
 		<p>{{$articulo->description}}</p>
 	</div>
@@ -31,23 +43,18 @@
 				</p>
 			</div>
 			<div class="c-comentario-autor">
-				<a href="{{route('showController.profile',$comentario->user_id)}}">
-					Autor: {{$comentario->user_id}}
-					<!-- Aquí va el nombre del usuario que realizó el comentario. -->
-					<!-- Es un enlace para ver el perfil del usuario. -->
-				</a>				
+				Por:
+				<a href="{{route('show.edit',$comentario->user_id)}}">{{$comentario->user_name}}</a>
+				<!-- <form method="GET" action="{{route('profile')}}">
+					@csrf
+					<input name="user_id" value="{{$comentario->user_id}}" class="d-none">
+					<input type="submit" value="{{$comentario->user_name}}"></input>
+				</form> -->
 			</div>
 		</div>
 		@endif
 	@endforeach
 </div>
-<!-- Contenedor de la sección donde se puede ingresar un comentario -->
-<!-- 
-	1. Puede tomarse la opción que si el usuario se encuentra autenticado se muestre
-	   esta sección.
-	2. La otra opción es que se muestre esta sección esté autenticado o no, pero al momento
-	   de publicar se verifique si está autenticado.
- -->
 <div>
 	@guest
 	<h3>¡Inicia sesión para que puedas comentar este artículo!</h3>

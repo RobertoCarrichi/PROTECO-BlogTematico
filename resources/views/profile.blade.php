@@ -4,15 +4,16 @@
 	 REGULAR -->
 <h1>
 	<!-- AQUÍ VA EL NOMBRE DE USUARIO -->
+	{{$user->name}}
 </h1>
-<!-- CONTENEDOR DE LA IMAGEN DE PERFIL -->
+<!-- CONTENEDOR DE LA IMAGEN DE PERFIL (AVATAR) -->
 <div id="c-img">
 	<img src="" alt="">
 </div>
 <!-- CONTENEDOR QUE CONTENGA LA INFORMACIÓN RELEVANTE DE EL USUARIO (texto) -->
 <div>
 	<p>
-		
+		{{$user->description}}
 	</p>
 </div>
 @endsection

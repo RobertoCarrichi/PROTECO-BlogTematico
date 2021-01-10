@@ -32,7 +32,7 @@
                 Perfil
                 </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a href="{{route('profile')}}">{{Auth::user()->name}}</a>    
+                <a href="#">{{Auth::user()->name}}</a>    
                 @if(Auth::user()->admin)
                 <a href="{{route('AdminArticulos.index')}}">Administrador</a>
                 @endif

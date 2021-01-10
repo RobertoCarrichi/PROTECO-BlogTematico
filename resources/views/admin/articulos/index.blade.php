@@ -16,10 +16,8 @@
 					<h4><strong>Descripción:</strong></h4>
 					<p>{{$articulo->description}}</p>
 					<div class="">
-						<a href="{{route('show.show', $articulo->id)}}"><button>Ver más</button></a>
-						<a href="{{route('show.show', $articulo->id)}}">
-							<button>Editar</button>
-						</a>
+						<a href="{{route('show.show', $articulo->id)}}"><button>Ver publicación completa</button></a>
+						<a href="{{route('AdminArticulos.edit', $articulo->id)}}"><button>Editar</button></a>
 						<form method="POST" action="{{route('AdminArticulos.destroy',$articulo->id)}}">
 							@csrf
 							@method('DELETE')
