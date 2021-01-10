@@ -11,25 +11,32 @@
 	</form>
 </div>
 @endif
-<!-- ESTA VISTA MOSTRARÁ DE FORMA DETALLADA UNA PUBLICACIÓN DEL BLOG TEMÁTICO -->
-<h1>Título del post</h1>
-<!-- Contenedor de la imagen principal -->
-<div id="c-publicacion-img">
-	<img src="{{asset("img/$articulo->img")}}" alt="Foto del articulo {{$articulo->title}}>
-</div>
-<!-- Contenedor del contenido del texto -->
-<div id="c-publicacion-texto">
-	<h5>Descripción:</h5>
-	<div id="c-texto">
-		<p>{{$articulo->description}}</p>
+
+<section class="articulos">
+	<div class="card articulo">
+		<div class="content">
+			<h3>{{$articulo->title}}</h3>
+			<div class="c-img">
+				<img src="{{asset("img/$articulo->img")}}" alt="Foto del articulo {{$articulo->title}}">
+			</div>
+			<h4><strong>Descripción:</strong></h4>
+			<p>{{$articulo->description}}</p>
+			Categoría: 
+			@if($articulo->category == "chicos")
+			<a href="">Baloncesto masculino</a>
+			@elseif($articulo->category == "chicas")
+			<a href="">Baloncesto femenino</a>
+			@else
+			<a href="#">Sin categoría</a>
+			@endif
+			Escrito por: <a href="{{route('show.edit',$articulo->author_id)}}">{{$articulo->author_name}}</a>
+		</div>
 	</div>
-	<div id="c-autor">
-		<h5>Autor: <a href="">{{$autor->name}}</a></h5>
-	</div>
-</div>
+</section>
+
 <!-- Contenedor de la seción de comentarios -->
-<h5>Comentarios:</h5>
-<div id="contenedor-comentarios">
+<section class="comentarios">
+	<h5>Comentarios:</h5>
 	<!-- 
 		Aquí abrá un FOREACH que muestre los comentarios que se han realizado de la publicación
 	-->
@@ -58,7 +65,7 @@
 		</div>
 		@endif
 	@endforeach
-</div>
+</section>
 <div>
 	@guest
 	<h3>¡Inicia sesión para que puedas comentar este artículo!</h3>

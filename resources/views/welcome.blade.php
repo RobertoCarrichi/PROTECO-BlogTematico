@@ -20,21 +20,22 @@
 <body>
    <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+        <div class=" container-fluid">
             <a class="navbar-brand" href="#">Título principal</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('main')}}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Chicos</a>
+                        <a class="nav-link" href="{{route('index.varonil')}}">Varonil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Chicas</a>
+                        <a class="nav-link" href="{{route('index.femenil')}}">Femenil</a>
                     </li>
                     @guest
                     <li class="nav-item">
@@ -91,29 +92,35 @@
             <span class="visually-hidden">Next</span>
          </a>
       </div>
-   </div>
-   <h1>Posts Recientes</h1>
-   <!-- AQUÍ VA A IR UN FOREACH CON LOS POST RECIENTES -->
-   <section>
-      @foreach($recientes as $articulo)
-      <div class="publicacion">
-         <div class="card">
+    </div>
+    <h2><strong>Artículos publicados recientemente</strong></h2>
+    <!-- AQUÍ VA A IR UN FOREACH CON LOS POST RECIENTES -->
+    <section class="articulos">
+        @foreach($recientes as $articulo)
+        <div class="card articulo">
             <div class="content">
-               <h3>{{$articulo->title}}</h3>
-               <div class="c-img">
-                  <img src="{{asset("img/$articulo->img")}}" alt="Foto del articulo {{$articulo->title}}">
-               </div>
-               <h4><strong>Descripción:</strong></h4>
-               <p>{{$articulo->description}}</p>
-               Escrito por: <a href="{{route('show.edit',$articulo->author_id)}}">{{$articulo->author_name}}</a>
-               <div class="">
-                  <a href="{{route('show.show', $articulo->id)}}"><button>Ver publicación completa</button></a>
-               </div>
+                <h4>{{$articulo->title}}</h4>
+                <div class="c-img">
+                    <img src="{{asset("img/$articulo->img")}}" alt="Foto del articulo {{$articulo->title}}">
+                </div>
+                <h4>Descripción:</h4>
+                Categoría: 
+                @if($articulo->category == "chicos")
+                <a href="">Baloncesto masculino</a>
+                @elseif($articulo->category == "chicas")
+                <a href="">Baloncesto femenino</a>
+                @else
+                <a href="#">Sin categoría</a>
+                @endif
+                Escrito por: <a href="{{route('show.edit',$articulo->author_id)}}">{{$articulo->author_name}}</a>
+                <div class="">
+                    <a href="{{route('show.show', $articulo->id)}}"><button>Ver publicación completa</button></a>
+                </div>
             </div>
-         </div>
-      </div>
-      @endforeach
-   </section>
+        </div>
+        @endforeach
+    </section>
+
    <!-- GOOGLE MAPS -->
    <div id="c-maps">
 

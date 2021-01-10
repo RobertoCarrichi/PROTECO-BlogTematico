@@ -17,7 +17,7 @@ use App\Articulo;
 
 Route::get('/', function () {
    	$articulos_recientes = Articulo::latest()
-	 ->take(4)
+	 ->take(3)
 	 ->get();
 	return view('welcome',['recientes' => $articulos_recientes]);
 })->name('main');
@@ -37,5 +37,14 @@ Route::get('/profile/{id}', function($id){
 	return view('profile',['user' => $user]);
 });
 
+Route::get('varonil', function(){
+	$articulos = Articulo::all();
+	return view('categoria1',['articulos'=>$articulos]);
+})->name('index.varonil');
+
+Route::get('femenil', function(){
+	$articulos = Articulo::all();
+	return view('categoria2',['articulos'=>$articulos]);
+})->name('index.femenil');
 
 Auth::routes();
