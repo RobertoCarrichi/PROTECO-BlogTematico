@@ -8,10 +8,11 @@
 </h1>
 <!-- CONTENEDOR DE LA IMAGEN DE PERFIL (AVATAR) -->
 <div id="c-img">
-	<img src="{{asset("avatars/$user->avatar")}}" alt="">
+	<img src="{{asset("avatars/$user->avatar")}}" alt="Avatar de {{$user->name}}">
 </div>
 <!-- CONTENEDOR QUE CONTENGA LA INFORMACIÓN RELEVANTE DE EL USUARIO (texto) -->
 <div>
+	<h3>Descripción: </h3>
 	<p>
 		{{$user->description}}
 	</p>
