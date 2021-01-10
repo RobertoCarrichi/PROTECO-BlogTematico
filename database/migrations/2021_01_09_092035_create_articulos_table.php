@@ -17,9 +17,7 @@ class CreateArticulosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('author_id');
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->date('date');
-            $table->time('time');
+            $table->text('description');
             $table->string('img')->nullable();
             $table->timestamps();
             //Definimos llave foranea y la referenciamos al id de la tabla usuarios.

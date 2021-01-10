@@ -17,6 +17,7 @@ class CreateComentariosTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('user_id');
+            $table->text('user_name');
             $table->unsignedBigInteger('article_id');
             // $table->unsignedBigInteger('author_id');
             $table->text('comment');

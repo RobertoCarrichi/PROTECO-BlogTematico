@@ -1,37 +1,50 @@
 @extends('layouts.app')
 @section('content')
-<main class="container">
-    <!-- Title -->
-    <div class="home-title row">
-        <div class="home-title_text pl-3 mr-5">
-            <h1 class="mt-4 mt-sm-5 text-purple ">Diseño Web</h1>
-            <p>Gen41</p>
+<main>
+    <h1>Viajes</h1>
+    <!-- AQUÍ VA UN CARROUSEL CON ALGUNAS FOTOS QUE ENTRAN EN LA TEMÁTICA DEL BLOG -->
+    <div id="c-carousel-principal">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{asset('img/carousel-welcome-1.jpg')}}" class="d-block w-100" alt="Foto 1">
         </div>
-        <div class="home-title_foto ">
-            <img src="img/ToyFace17.png" alt="">
+        <div class="carousel-item">
+            <img src="{{asset('img/carousel-welcome-2.jpg')}}" class="d-block w-100" alt="Foto 2">
+        </div>
+        <div class="carousel-item">
+            <img src="{{asset('img/carousel-welcome-3.jpg')}}" class="d-block w-100" alt="Foto 3">
         </div>
     </div>
-    <hr>
-    <h2 class="pendientesh2 text-purple mt-2 text-orange">Tareas pendientes</h2>
-    <!-- Cursos 0 -->
-        <div class="cursos-index mt-4">
-            <div class="row row-cols-1 row-cols-lg-2 ">
-                <!-- Card 1 -->
-                <div class="col mb-4">
-                    <div class="card h-100 bg-yellow p-3 p-xl-4">
-                        <div class="home-cursos_titulo d-flex">
-                            <div class="cursos-card_header">
-                                <h2 class="card-title pt-1 pl-2"></h2>
-                                <h3 class="pl-2"></h3>
-                            </div>
-                        </div>
-                        <hr>
-                        <p class="card-text"></p>
-                        <a class="card-text w-50" href=""></a>
-                        <a href="" class="btn btn-success card-entregar mt-5">Entregar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+  </a>
+</div>
+</div>
+<h1>Posts Recientes</h1>
+<!-- AQUÍ VA A IR UN FOREACH CON LOS POST RECIENTES -->
+<div class="publicacion">
+
+</div>
+
+<!-- GOOGLE MAPS -->
+<div id="c-maps">
+
+</div>
+
+<!-- YOUTUBE -->
+<div id="c-youtube">
+
+</div>
+
+<!-- FACEBOOK -->
+<div id="c-facebook">
+
+</div>
 </main>
 @endsection

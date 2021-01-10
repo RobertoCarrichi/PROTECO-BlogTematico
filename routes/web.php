@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Articulo;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 Auth::routes();
 
@@ -24,3 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', function(){
 	return view('profile');
 })->name('profile');
+
+
+Route::middleware(['AdminAccess'])->group(function() {
+	Route::resource('AdminArticulos','ArticleController');
+});
+
+Route::resource('show','showController');
+
+Route::resource('comment','CommentController');
