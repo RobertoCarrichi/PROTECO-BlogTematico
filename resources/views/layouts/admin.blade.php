@@ -20,35 +20,32 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Título principal</a>
+                <a class="navbar-brand" href="{{route('main')}}">Título principal</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('main')}}">Inicio</a>
+                            <a class="nav-link active" href="{{route('index.varonil')}}">Varonil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('index.varonil')}}">Varonil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('index.femenil')}}">Femenil</a>
+                            <a class="nav-link active" href="{{route('index.femenil')}}">Femenil</a>
                         </li>
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('login')}}">Iniciar sesión</a>
+                            <a class="nav-link active" href="{{route('login')}}">Iniciar sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('register')}}">Regístrate</a>
+                            <a class="nav-link active" href="{{route('register')}}">Regístrate</a>
                         </li>
                         @else
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Perfil</a>
+                            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{Auth::user()->name}}</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{route('show.edit', Auth::user()->id)}}">{{Auth::user()->name}}</a></li>
+                                <li><a class="dropdown-item" href="{{route('show.edit', Auth::user()->id)}}">Ver perfil</a></li>
                                 @if(Auth::user()->admin)
-                                <li><a class="dropdown-item" href="{{route('main')}}">Volver a vista de usuario</a></li>
+                                <li><a class="dropdown-item" href="{{route('main')}}">Volver a usuario</a></li>
                                 @endif
                                 <li>
                                     <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
