@@ -19,16 +19,16 @@
 </div>
 <!-- Contenedor del contenido del texto -->
 <div id="c-publicacion-texto">
-	<h4>Descripción:</h4>
+	<h5>Descripción:</h5>
 	<div id="c-texto">
 		<p>{{$articulo->description}}</p>
 	</div>
 	<div id="c-autor">
-		<h4>Autor: <a href="">{{$autor->name}}</a></h4>
+		<h5>Autor: <a href="">{{$autor->name}}</a></h5>
 	</div>
 </div>
 <!-- Contenedor de la seción de comentarios -->
-<h4>Comentarios:</h4>
+<h5>Comentarios:</h5>
 <div id="contenedor-comentarios">
 	<!-- 
 		Aquí abrá un FOREACH que muestre los comentarios que se han realizado de la publicación
@@ -45,12 +45,16 @@
 			<div class="c-comentario-autor">
 				Por:
 				<a href="{{route('show.edit',$comentario->user_id)}}">{{$comentario->user_name}}</a>
-				<!-- <form method="GET" action="{{route('profile')}}">
-					@csrf
-					<input name="user_id" value="{{$comentario->user_id}}" class="d-none">
-					<input type="submit" value="{{$comentario->user_name}}"></input>
-				</form> -->
 			</div>
+			@if(Auth::user()->admin)
+			<form method="POST" action="{{route('comment.destroy',$comentario->id)}}">
+				@csrf
+				@method('DELETE')
+				<button class="danger" type="submit">
+					Eliminar comentario.
+				</button>
+			</form>
+			@endif
 		</div>
 		@endif
 	@endforeach
@@ -60,10 +64,11 @@
 	<h3>¡Inicia sesión para que puedas comentar este artículo!</h3>
 	@else
 	<!-- Este es el formulario que se llena para añadir un comentario-->
+	<h5>¿Quieres comentar este artículo?</h5>
 	<form method="POST" action="{{route('comment.store')}}">
 		@csrf
-		<textarea name="comment" id="" cols="30" rows="10" placeholder="Escribe un comentario..."></textarea>
 		<input name="article_id" value="{{$articulo->id}}" class="d-none">
+		<textarea name="comment" id="" cols="30" rows="10" placeholder="Escribe un comentario..."></textarea>
 		<input type="submit" value="Enviar"></input>
 	</form>
 	@endguest

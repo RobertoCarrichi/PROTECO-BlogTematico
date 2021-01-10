@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Articulo;
+use App\User;
 
 class ArticleController extends Controller
 {
@@ -42,6 +43,9 @@ class ArticleController extends Controller
         //LA QUE REALIZA LA ACCIÓN DE "CREAR"
         $article = new Articulo();
         $article->author_id = $request->author_id;
+
+        $user = User::findOrFail($article->author_id);
+        $article->author_name = $user->name;
         $article->title = $request->title;
         $article->description = $request->description;
         $article->img = $request->img;

@@ -16,9 +16,11 @@ use App\Articulo;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   	$articulos_recientes = Articulo::latest()
+	 ->take(4)
+	 ->get();
+	return view('welcome',['recientes' => $articulos_recientes]);
 })->name('main');
-
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -30,15 +32,10 @@ Route::resource('show','showController');
 
 Route::resource('comment','CommentController');
 
-// Route::get('/profile', 'showController@profile')->name('profile');
-
 Route::get('/profile/{id}', function($id){
-	// return redirect('profile');
 	$user = User::findOrFail($id);
-	return $user->name;
-})->name('test');
-
-
+	return view('profile',['user' => $user]);
+});
 
 
 Auth::routes();

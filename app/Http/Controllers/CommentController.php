@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comentario;
+use App\Articulo;
+use App\User;
 
 class CommentController extends Controller
 {
@@ -21,25 +23,8 @@ class CommentController extends Controller
         $comentario->article_id = $request->article_id;
         $comentario->comment = $request->comment;
         $comentario->save();
-        return redirect('show.show',$comentario->article_id);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $comentario = Comentario::findOrFail($id);
-        $comentario->user_id = auth()->user()->id;
-        $comentario->user_name = auth()->user()->name;
-        $comentario->article_id = $request->article_id;
-        $comentario->comment = $request->comment;
-        $comentario->update();
-        return redirect('show.show',$comentario->article_id);
+        return redirect()->route('show.show',$comentario->article_id);
     }
 
     /**
@@ -53,6 +38,6 @@ class CommentController extends Controller
         $comentario = Comentario::findOrFail($id);
         $comentario->delete();
 
-        return redirect('show.show',$comentario->article_id);
+        return redirect()->route('show.show',$comentario->article_id);
     }
 }
