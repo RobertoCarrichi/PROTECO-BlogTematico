@@ -18,6 +18,7 @@ class CreateArticulosTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->string('author_name');
             $table->string('title');
+            $table->string('category');
             $table->text('description');
             $table->string('img')->nullable();
             $table->timestamps();

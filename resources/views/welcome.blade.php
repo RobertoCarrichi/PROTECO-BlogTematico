@@ -19,34 +19,55 @@
 </head>
 <body>
    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-nav">
-         <a href="{{route('main')}}">INICIO</a>
-         <a href="">Chicos</a>
-         <a href="">Chicas</a>
-         @guest  
-         <a href="{{route('login')}}">Iniciar sesión</a>
-         <a href="{{route('register')}}">Registrarse</a>
-         @else
-         <div class="dropdown">
-            <div class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a href="{{route('show.index',Auth::user()->id)}}">{{Auth::user()->name}}</a>    
-                  @if(Auth::user()->admin)
-                  <a href="{{route('AdminArticulos.index')}}">Administrador</a>
-                  @endif
-                  <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
-                  <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
-                     @csrf
-                  </form>
-               </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Título principal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('main')}}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Chicos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Chicas</a>
+                    </li>
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('register')}}">Regístrate</a>
+                    </li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Perfil
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{route('show.edit', Auth::user()->id)}}">{{Auth::user()->name}}</a></li>
+                            @if(Auth::user()->admin)
+                            <li><a class="dropdown-item" href="{{route('AdminArticulos.index')}}">Entrar a vista de administrador</a></li>
+                            @endif
+                            <li>
+                                <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                                <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+                                @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    @endguest
+                </ul>
             </div>
-         </div>
-         @endguest
+        </div>
       </nav>
    </header>
    <main>
-   <h1>Viajes</h1>
    <!-- AQUÍ VA UN CARROUSEL CON ALGUNAS FOTOS QUE ENTRAN EN LA TEMÁTICA DEL BLOG -->
    <div id="c-carousel-principal">
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">

@@ -75,7 +75,7 @@ class RegisterController extends Controller
         if(request()->hasFile('avatar')){
             $avatar = request()->file('avatar')->getClientOriginalName();
             // move(ruta de destino, nombre con el que se guarda)
-            request()->file('avatar')->storeAs('avatars',$user->name.'_'.$avatar,'');
+            request()->file('avatar')->storeAs('avatars',$avatar,'');
             $user->update(['avatar' => $avatar]);
         }
 

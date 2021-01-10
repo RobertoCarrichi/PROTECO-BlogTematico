@@ -47,6 +47,7 @@ class ArticleController extends Controller
         $user = User::findOrFail($article->author_id);
         $article->author_name = $user->name;
         $article->title = $request->title;
+        $article->category = $request->category;
         $article->description = $request->description;
         $article->img = $request->img;
 
@@ -101,6 +102,7 @@ class ArticleController extends Controller
         $backup = $article;
         $article->author_id = $request->author_id;
         $article->title = $request->title;
+        $article->category = $request->category;
         $article->description = $request->description;
 
         if($request->hasFile('img')){
