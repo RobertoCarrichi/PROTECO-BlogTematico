@@ -108,9 +108,9 @@
                 <h6 class="card-subtitle mb-2 text-muted text-center">Escrito por: <a class="card-link" href="{{route('show.edit',$articulo->author_id)}}">{{$articulo->author_name}}</a></h6><br>
                 <p class="card-text text-center" style="color: #ffff">{{$articulo->description}}</p>
                 <h6 class="d-inline-block card-subtitle text-muted">Categoría:</h6>
-                @if($articulo->category == "chicos")
+                @if($articulo->category == "varonil")
                 <a href="">Baloncesto masculino</a>
-                @elseif($articulo->category == "chicas")
+                @elseif($articulo->category == "femenil")
                 <a href="">Baloncesto femenino</a>
                 @else
                 <a href="#">Sin categoría</a>
