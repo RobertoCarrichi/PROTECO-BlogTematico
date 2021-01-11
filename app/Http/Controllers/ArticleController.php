@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Articulo;
 use App\User;
+use App\Comentario;
 
 class ArticleController extends Controller
 {
@@ -49,6 +50,7 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->category = $request->category;
         $article->description = $request->description;
+        $article->content = $request->content;
         $article->img = $request->img;
 
         if($request->hasFile('img')){
@@ -104,6 +106,7 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->category = $request->category;
         $article->description = $request->description;
+        $article->content = $request->content;
 
         if($request->hasFile('img')){
             $img = $request->img;
@@ -131,6 +134,13 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $articulo = Articulo::findOrFail($id);
+
+        foreach (Comentario::all() as $comentario) {
+            if($comentario->article_id = $articulo->id){
+                $comentario->delete();
+            }
+        }
+
         $articulo->delete();
 
         return redirect('AdminArticulos');

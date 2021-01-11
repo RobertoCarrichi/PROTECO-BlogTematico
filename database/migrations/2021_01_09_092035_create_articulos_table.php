@@ -20,6 +20,7 @@ class CreateArticulosTable extends Migration
             $table->string('title');
             $table->string('category');
             $table->text('description');
+            $table->text('content');
             $table->string('img')->nullable();
             $table->timestamps();
             //Definimos llave foranea y la referenciamos al id de la tabla usuarios.

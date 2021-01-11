@@ -1,31 +1,50 @@
 @extends('layouts.admin')
 @section('content')
-	<main class="main__index">
-		<section class="card">
-			<h1 class="card-header">Agregar un artículo</h1>
-			<div class="card-body">
-				<form method="POST" action="{{route('AdminArticulos.store')}}" enctype="multipart/form-data">
-					@csrf
-					<div class="form-group">
-						<label class="col-md-4 col-form-label text-md-right" for="title">Nombre del artículo: </label>
-						<input class="form-control" type="text" name="title" required>
+<section class="page-section" id="crear-articulo">
+	<div id="register" class="form">
+		<h3 class="mb-4">Agregar un artículo</h3>
+		<div class="register-page">
+			<form method="POST" action="{{route('AdminArticulos.store')}}" enctype="multipart/form-data">
+				@csrf
+				<div class="form-group">
+					<div class="d-flex justify-content-left">
+						<label class="col-md-4 col-form-label text-md-left" for="title">Nombre del artículo: </label>
 					</div>
-					<div class="form-group">
-						<label for="img" class="col-md-4 col-form-label text-md-right">Imagen: </label>
-						<input class="form-control" type="file" name="img" enctype required>
+					<input class="form-control" type="text" name="title" required>
+				</div>
+				<div class="form-group">
+					<div class="d-flex justify-content-left">
+						<label for="img" class="col-md-4 col-form-label text-md-left">Imagen: </label>
 					</div>
-					<div class="form-group">
-						<label class="col-md-4 col-form-label text-md-right" for="category">Categoría: (Escribe "chicos" o "chicas" según sea el caso)</label>
-						<input class="form-control" type="text" name="category" required>
+					<input class="form-control" type="file" name="img" enctype required>
+				</div>
+				<div class="form-group">
+					<div class="d-flex justify-content-left">
+						<label class="col-md-8 col-form-label text-md-left" for="category">Categoría: (Escribe "femenil" o "varonil" según sea el caso)</label>
 					</div>
-					<div class="form-group">
-						<label class="col-md-4 col-form-label text-md-right" for="description">Descripción: </label>
-						<textarea class="form-control" name="description" required placeholder="Escribe aquí el contenido que quieres que lean!"></textarea>
+					<input class="form-control" type="text" name="category" required>
+				</div>
+				<div class="form-group">
+					<div class="d-flex justify-content-left">
+						<label class="col-md-4 col-form-label text-md-left" for="description">Descripción: </label>
 					</div>
-					<input name="author_id" value="{{Auth::user()->id}}" class="d-none">
-					<input class="btn btn-primary" type="submit"></input>
-				</form>
-			</div>
-		</section>
-	</main>
+					<textarea class="form-control" name="description" required placeholder="Escribe aquí una breve descripción..."></textarea>
+					<div class="d-flex justify-content-left">
+						<label class="col-md-4 col-form-label text-md-left" for="content">Contenido: </label>
+					</div>
+					<textarea class="form-control" name="content" required placeholder="Escribe aquí el contenido que quieres que lean!"></textarea>
+				</div>
+				<input name="author_id" value="{{Auth::user()->id}}" class="d-none">
+				
+				<div class="form-group row d-flex justify-content-center mt-5">
+					<div class="col-md-6">
+						<button id="btn-register" type="submit" class="btn btn-primary">
+							{{ __('Agregar') }}
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
 @endsection
